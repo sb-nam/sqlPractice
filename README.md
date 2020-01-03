@@ -31,3 +31,28 @@ ELSE TO_CHAR(MGR) END AS CHG_MRG
 FROM EMP;
 
 ```
+
+```sql
+
+-- 212~213 1번 문제
+select deptno,trunc(avg(sal)) as avg_sal ,max(sal) as max_sal, min(sal) as min_sal ,count(*) as cnt 
+from emp group by deptno; 
+
+-- 212~213 2번 문제
+select job, count(*) from emp group by job having COUNT(*) >= 3;
+
+-- 212~213 3번 문제
+select to_char(hiredate, 'yyyy') as hire_year, deptno, count(*) as cnt from emp
+group by to_char(hiredate, 'yyyy'),deptno ;
+
+-- 212~213 4번 문제
+select 'x' as exist_comm , COUNT(*) from emp where comm is null
+union all
+select 'o' as exist_comm, count(*) from emp where comm  >= 0;
+
+-- 212~213 5번 문제
+select deptno,to_char(hiredate,'yyyy'),count(*) as cnt, max(sal) as max_sal , sum(sal) as sum_sal , avg(sal) as avg_sal
+from emp
+group by deptno, to_char(hiredate,'yyyy');
+
+```
