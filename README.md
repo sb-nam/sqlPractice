@@ -56,3 +56,24 @@ from emp
 group by deptno, to_char(hiredate,'yyyy');
 
 ```
+
+```sql
+
+-- 239~ 240 1번 문제
+select d.deptno, d.dname, e.empno, e.ename, e.sal
+from dept d, emp e 
+where e.deptno = d.deptno and sal > 2000;
+
+-- 239~ 240 2번 문제
+select d.deptno, d.dname, trunc(avg(sal)) as avg_sal, max(sal) as max_sal, min(sal) as min_sal, count(*) as cnt
+from  dept d, emp e 
+where e.deptno = d.deptno 
+group by d.deptno, d.dname;
+
+-- 239~ 240 3번 문제
+select d.deptno, d.dname, e.empno, e.ename, e.job, e.sal
+from dept d, emp e 
+where e.deptno = d.deptno 
+order by e.deptno, d.dname;
+
+```
