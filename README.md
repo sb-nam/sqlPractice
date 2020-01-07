@@ -77,3 +77,28 @@ where e.deptno = d.deptno
 order by e.deptno, d.dname;
 
 ```
+```sql
+--262~263 no.1
+select e.job,e.empno,e.ename,e.sal,e.deptno,d.dname 
+from emp E join dept D on(e.deptno = d.deptno)
+where job = (select job from emp where ename = 'ALLEN');
+
+--262~263 no.2
+select e.empno, e.ename, d.dname, e.hiredate, d.loc, e.sal, s.grade 
+from emp E join dept D on (e.deptno = d.deptno)
+join salgrade s on (e.sal between s.losal and s.hisal)
+where e.sal > (select avg(sal) from emp)
+order by e.sal desc,e.empno ;
+
+--262~263 no.3
+select e.empno, e.ename, e.job, d.deptno, d.dname, d.loc
+from emp E join dept D on (e.deptno = d.deptno)
+where job not in(select job from emp where deptno = 30) and e.deptno = 10;
+--           job not in(A)(A에 포함된 애들)이 아니고          10인 애들
+
+--262~263 no.4
+select e.empno, e.ename, e.sal, s.grade
+from emp E join salgrade S on(e.sal between s.losal and s.hisal)
+where e.sal > all(select sal from emp where job = 'SALESMAN')
+order by e.empno;
+```
