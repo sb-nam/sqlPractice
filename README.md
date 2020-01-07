@@ -93,8 +93,8 @@ order by e.sal desc,e.empno ;
 --262~263 no.3
 select e.empno, e.ename, e.job, d.deptno, d.dname, d.loc
 from emp E join dept D on (e.deptno = d.deptno)
-where job not in(select job from emp where deptno = 30) and e.deptno = 10;
---           job not in(A)(A에 포함된 애들)이 아니고          10인 애들
+where e.deptno = 10 and job not in(select job from emp where deptno = 30);
+--     부서번호가 10이고  ,   30에 포함된 직업이 아닌 애들
 
 --262~263 no.4
 select e.empno, e.ename, e.sal, s.grade
