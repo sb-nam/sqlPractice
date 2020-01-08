@@ -102,3 +102,34 @@ from emp E join salgrade S on(e.sal between s.losal and s.hisal)
 where e.sal > all(select sal from emp where job = 'SALESMAN')
 order by e.empno;
 ```
+
+```sql
+--287~288
+create table chap10hw_emp as select * from emp;
+create table chap10hw_dept as select * from dept;
+create table chap10hw_salgrade as select * from salgrade;
+
+
+--287~288 NO.1
+insert ALL into chap10hw_dept(deptno, dname, loc) VALUES(50,'ORACLE','BUSAN')
+INTO chap10hw_dept VALUES(60,'SQL','ILSAN')
+INTO chap10hw_dept VALUES(70,'SELECT','INCHEON')
+INTO chap10hw_dept VALUES(80,'DML','BUNDANG')
+SELECT * FROM DUAL;
+
+--287~288 NO.2
+INSERT ALL INTO chap10hw_emp(EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) 
+VALUES(7201,'TEST_USER1','MANAGER',7788,TO_DATE('2016-01-02','YYYY-MM-DD'),4500,NULL,50)
+INTO chap10hw_emp VALUES(7202,'TEST_USER2','CLERK',7201,TO_DATE('2016-02-21','YYYY-MM-DD'),1800,NULL,50)
+INTO chap10hw_emp VALUES(7203,'TEST_USER3','ANALIST',7201,TO_DATE('2016-04-11','YYYY-MM-DD'),3400,NULL,60)
+INTO chap10hw_emp VALUES(7204,'TEST_USER4','SALESMAN',7201,TO_DATE('2016-05-31','YYYY-MM-DD'),2700,300,60)
+INTO chap10hw_emp VALUES(7205,'TEST_USER5','CLERK',7201,TO_DATE('2016-07-20','YYYY-MM-DD'),2600,NULL,70)
+INTO chap10hw_emp VALUES(7206,'TEST_USER6','CLERK',7201,TO_DATE('2016-09-08','YYYY-MM-DD'),2600,NULL,70)
+INTO chap10hw_emp VALUES(7207,'TEST_USER7','LECTURER',7201,TO_DATE('2016-10-28','YYYY-MM-DD'),2300,NULL,80)
+INTO chap10hw_emp VALUES(7208,'TEST_USER8','STUDENT',7201,TO_DATE('2018-03-09','YYYY-MM-DD'),1200,NULL,80)
+SELECT * FROM DUAL;
+
+select * from chap10hw_emp;
+select * from chap10hw_dept;
+select * from chap10hw_salgrade;
+```
