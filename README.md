@@ -132,4 +132,21 @@ SELECT * FROM DUAL;
 select * from chap10hw_emp;
 select * from chap10hw_dept;
 select * from chap10hw_salgrade;
+
+--287~289 no.3
+update chap10hw_emp set deptno = 70
+where sal > (select avg(sal) from chap10hw_emp where deptno = 50);
+
+--287~289 no.4
+update chap10hw_emp set sal = sal*1.1, deptno = 80 where hiredate > (select min(hiredate) 
+from chap10hw_emp where deptno = 60);
+select * from chap10hw_emp;
+select * from chap10hw_dept;
+select * from chap10hw_salgrade;
+
+--297~289 no.5
+delete from chap10hw_emp where empno in (select e.empno from chap10hw_emp E join salgrade S on
+(e.sal between s.losal and s.hisal and s.grade = 5));
+select * from chap10hw_emp;
+
 ```
