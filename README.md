@@ -150,3 +150,76 @@ delete from chap10hw_emp where empno in (select e.empno from chap10hw_emp E join
 select * from chap10hw_emp;
 
 ```
+
+```sql
+-- ex) no.1
+select trunc(avg(sal)), max(sal), min(sal), count(*) from emp where deptno = 10; 
+
+-- ex) no.2
+select deptno, job, count(*) from emp group by deptno,job order by deptno;
+
+-- ex) no.3
+select trunc(avg(sal)), max(sal), min(sal) from emp group by job order by trunc(avg(sal));
+
+-- ex) no.4
+select e.deptno, d.dname, e.ename, e.sal from emp E join dept D on(e.deptno = d.deptno);
+
+-- ex) no.5
+select d.dname from dept D join emp E on(d.deptno = e.deptno) where e.ename = 'ALLEN';
+
+-- ex) no.6
+select e.ename, d.dname, e.sal, d.loc from emp E join dept D on(e.deptno = d.deptno)
+where e.job = (select job from emp where ename = 'ALLEN');
+
+-- ex) no.7
+select e.empno, e.ename, d.dname, e.hiredate, d.loc, e.sal from emp E join dept D on(e.deptno = d.deptno)
+where e.sal > (select avg(sal) from emp);
+
+-- ex) no.8
+select e.empno, e.ename, d.dname, e.hiredate, d.loc from emp E join dept D on(e.deptno = d.deptno)
+where e.deptno = 10 and e.job in(select job from emp where deptno = 20);
+
+-- ex no.9
+select e.empno, e.ename, d.dname, d.loc, e.sal from emp E join dept D on(e.deptno = d.deptno)
+where e.sal BETWEEN (SELECT SAL FROM EMP WHERE ENAME = 'ALLEN') AND (SELECT SAL FROM EMP WHERE ENAME = 'FORD') 
+AND e.ename NOT IN ('ALLEN');
+
+--ex) no.10
+select empno,ename,sal from emp where sal > (select max(sal) from emp where deptno = 30);
+
+-- ex) no.11
+select count(*) from emp where ename like '_A%';
+
+-- ex) no.12
+select round(avg(sal)), sum(sal), max(sal), min(sal) from emp;
+
+-- ex) no.13
+select job,round(avg(sal)) from emp group by job having avg(sal) >1500;
+
+-- ex) no.14
+select e.ename,d.dname,e.sal from emp E join dept D on(e.deptno = d.deptno);
+
+-- ex) no.15
+select d.deptno,d.dname,d.loc,count(e.deptno) from  emp E right outer join dept D on(e.deptno = d.deptno) 
+group by d.deptno,d.dname,d.loc;
+
+-- ex) no.16
+select empno, ename from emp where sal > (select avg(sal) from emp);
+
+-- ex) no.17
+select e.ename, d.dname, e.job, e.sal from emp E join dept D on(e.deptno = d.deptno)
+where d.dname = (select d.dname from emp E join dept D on(e.deptno = d.deptno) where ename ='FORD');
+
+-- ex) no.18
+select e.ename, e.deptno, e.sal, e.job from emp E join dept D on(d.deptno=e.deptno) 
+group by e.deptno,e.ename,e.sal, e.job  HAVING avg(sal) between 
+(select avg(sal) from emp E join dept D on(d.deptno=e.deptno) where d.dname = 'SALES') and
+(select avg(sal) from emp E join dept D on(d.deptno=e.deptno) where d.dname = 'RESEARCH');
+
+-- ex) no.19
+select deptno,ename from emp group by deptno,ename having avg(sal) < 1000; 
+
+-- ex) no.20
+select empno, ename, job, sal from emp where sal < (select sal from emp where job = 'ANALYST')
+and job not in ('ANALYST');
+```
