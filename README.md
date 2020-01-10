@@ -223,3 +223,57 @@ select deptno,ename from emp group by deptno,ename having avg(sal) < 1000;
 select empno, ename, job, sal from emp where sal < (select sal from emp where job = 'ANALYST')
 and job not in ('ANALYST');
 ```
+```sql
+
+-- 자바 
+CREATE TABLE JAVASTUDENT(
+STDNO NUMBER(2) PRIMARY KEY,
+NAME VARCHAR(10),
+TNO NUMBER (2)
+);
+
+CREATE TABLE TEAM(
+TNO NUMBER(2) PRIMARY KEY,
+TNAME VARCHAR(20),
+CAPTAIN VARCHAR(10)
+);
+INSERT ALL INTO javastudent VALUES(01,'강지선',20)
+INTO javastudent VALUES(02,'공은경',30)
+INTO javastudent VALUES(03,'김용우',40)
+INTO javastudent VALUES(04,'김현민',10)
+INTO javastudent VALUES(05,'김형근',60)
+INTO javastudent VALUES(06,'남설빈',10)
+INTO javastudent VALUES(07,'박상준',40)
+INTO javastudent VALUES(08,'손영욱',50)
+INTO javastudent VALUES(09,'송나라',20)
+INTO javastudent VALUES(10,'신민철',40)
+INTO javastudent VALUES(11,'심지선',20)
+INTO javastudent VALUES(12,'오세훈',60)
+INTO javastudent VALUES(13,'오진수',10)
+INTO javastudent VALUES(14,'유영빈',50)
+INTO javastudent VALUES(15,'이미령',30)
+INTO javastudent VALUES(16,'이창혁',10)
+INTO javastudent VALUES(17,'장소미',30)
+INTO javastudent VALUES(18,'장현욱',60)
+INTO javastudent VALUES(19,'주민웅',40)
+INTO javastudent VALUES(20,'한충구',50)
+SELECT * FROM DUAL;
+SELECT * FROM javastudent;
+
+INSERT ALL INTO TEAM VALUES(10,'자바자바','남설빈')
+INTO TEAM VALUES(20,'한나라투지선','심지선')
+INTO TEAM VALUES(30,'상부상조','이미령')
+INTO TEAM VALUES(40,'더휴면32사단','김용우')
+INTO TEAM VALUES(50,'공격팀','손영욱')
+INTO TEAM VALUES(60,'우리의서울','오세훈')
+SELECT * FROM DUAL;
+SELECT * FROM TEAM;
+
+COMMIT;
+
+--1번
+select j.name from javastudent j join team t on(j.tno = t.tno) where t.tname = (select tname from team where tname = '우리의서울') order by j.name; 
+--2번
+select j.name from javastudent j join team t on(j.tno = t.tno) where t.captain = (select captain from team where captain = '이미령') order by j.name;
+
+```
