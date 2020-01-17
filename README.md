@@ -277,3 +277,19 @@ select j.name from javastudent j join team t on(j.tno = t.tno) where t.tname = (
 select j.name from javastudent j join team t on(j.tno = t.tno) where t.captain = (select captain from team where captain = '이미령') order by j.name;
 
 ```
+
+```sql
+--테이블생성
+CREATE TABLE Member(
+ m_no varchar2(4) PRIMARY KEY,--회원등록번호
+ m_name varchar2(40) NOT NULL, --이름
+ m_ssn varchar2(14) NOT NULL, --주민번호
+ m_phoneNum varchar2(13), --연락처
+ m_registdate DATE DEFAULT sysdate -- 등록날짜
+);
+
+CREATE SEQUENCE seq_member_no;
+
+select * from member;
+commit;
+```
